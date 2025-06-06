@@ -1,0 +1,26 @@
+<div class="todo-container">
+  <h2>📝 To-Do List</h2>
+
+  <!-- Input field -->
+  <div class="todo-input">
+    <input type="text" [(ngModel)]="newTodo" placeholder="Add a new task..." />
+    <button (click)="addTask()" class="add-btn">➕ Add</button>
+  </div>
+
+  <!-- Task List -->
+  <ul class="todo-list">
+    <li *ngFor="let task of tasks" [class.completed]="task.completed">
+      <div class="task-content">
+        <input type="checkbox" [(ngModel)]="task.completed" (change)="toggleCompletion(task)" />
+        <span>{{ task.title }}</span>
+      </div>
+
+      <div class="task-status">
+        <span [ngClass]="task.completed ? 'completed-text' : 'pending-text'">
+          {{ task.completed ? '✔ Completed' : '⏳ Not Completed' }}
+        </span>
+        <button (click)="deleteTask(task.id)" class="delete-btn">🗑</button>
+      </div>
+    </li>
+  </ul>
+</div>
